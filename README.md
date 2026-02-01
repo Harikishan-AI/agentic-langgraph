@@ -1,6 +1,6 @@
-# Agentic AI - Intelligent Workflow System
+# VeriGraph-AI 🛡️
 
-An advanced agentic AI system built with **LangGraph** and **LangChain** that orchestrates a team of specialized AI workers to answer complex user queries. The system features an intelligent supervisor that routes tasks, a Retrieval-Augmented Generation (RAG) engine, real-time web scraping capabilities, and a robust validation loop to ensure high-quality responses.
+**VeriGraph-AI** is an advanced agentic AI system built with **LangGraph** and **LangChain** that orchestrates a team of specialized AI workers to answer complex user queries. The system features an intelligent supervisor that routes tasks, a Retrieval-Augmented Generation (RAG) engine, real-time web scraping capabilities, and a robust validation loop to ensure high-quality responses.
 
 ## 🚀 Features
 
@@ -22,6 +22,30 @@ The system operates as a directed graph where:
     -   If **Valid**: The workflow ends and returns the result.
     -   If **Invalid**: The workflow loops back to the Supervisor to attempt a different approach.
 
+```mermaid
+graph TD
+    Start((__start__)) --> Supervisor(supervisor)
+    
+    Supervisor -.-> LLM(llm)
+    Supervisor -.-> RAG(rag)
+    Supervisor -.-> WebScraper(web_scraper)
+    
+    LLM --> Validator(validator)
+    RAG --> Validator(validator)
+    WebScraper --> Validator(validator)
+    
+    Validator -.->|invalid| Supervisor
+    Validator -.->|valid| End((__end__))
+    
+    style Start fill:#d8b4fe,stroke:#a855f7,stroke-width:2px
+    style Supervisor fill:#f3e8ff,stroke:#a855f7,stroke-width:2px
+    style LLM fill:#f3e8ff,stroke:#a855f7,stroke-width:2px
+    style RAG fill:#f3e8ff,stroke:#a855f7,stroke-width:2px
+    style WebScraper fill:#f3e8ff,stroke:#a855f7,stroke-width:2px
+    style Validator fill:#f3e8ff,stroke:#a855f7,stroke-width:2px
+    style End fill:#d8b4fe,stroke:#a855f7,stroke-width:2px
+```
+
 ## 🛠️ Prerequisites
 
 - **Python 3.12+**
@@ -36,8 +60,8 @@ The system operates as a directed graph where:
 
 1.  **Clone the Repository**
     ```bash
-    git clone https://github.com/yourusername/agentic-ai.git
-    cd agentic-ai
+    git clone https://github.com/yourusername/verigraph-ai.git
+    cd verigraph-ai
     ```
 
 2.  **Install Dependencies**
@@ -58,7 +82,7 @@ The system operates as a directed graph where:
     HUGGINGFACE_API_KEY=your_huggingface_api_key
     LANGCHAIN_API_KEY=your_langchain_api_key
     LANGCHAIN_TRACING_V2=true
-    LANGCHAIN_PROJECT=Agentic-AI
+    LANGCHAIN_PROJECT=VeriGraph-AI
     ```
 
 ## 🚀 Usage
@@ -89,7 +113,7 @@ The system operates as a directed graph where:
 ## 📂 Project Structure
 
 ```
-agentic-ai/
+verigraph-ai/
 ├── code/
 │   └── index_updated.ipynb   # Main workflow definition and logic
 ├── data/
